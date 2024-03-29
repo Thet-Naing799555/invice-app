@@ -1,6 +1,6 @@
 
 import { addRecordQuantity, createRecord, deleRecord, subRecordQuantity, updateRecordtotal } from "./record.js";
-import {  createForm,     rowGroup } from "./selector.js";
+import {  createForm,     inventory,     rowGroup } from "./selector.js";
 import { products } from "./variable.js";
 
 export const createFormHandler = (e) => {
@@ -19,13 +19,35 @@ const currentProduct = products.find((x) => x.id === currentProductId )
 
 //isExitstance row
 
-//append to table
-rowGroup.append(createRecord(currentProduct,currentQuantity))
-createForm.reset()
+const isExitstanceRow = rowGroup.querySelector(`[row-product-id='${currentProductId}']`)  //altribute selector with id
+console.log(isExitstanceRow);
 
-//calculate total record
-  updateRecordtotal()
+if(isExitstanceRow) {
+
+    const currentQuantityElement = isExitstanceRow.querySelector(".row-quantity");
+const currentCost =  isExitstanceRow.querySelector(".row-cost");
+const currentPrice =isExitstanceRow.querySelector(".row-product-price")
+ currentQuantityElement.innerText = parseInt(currentQuantityElement.innerText)+currentQuantity
+console.log(currentPrice.innerText);
+currentCost.innerText= currentPrice.innerText* currentQuantityElement.innerText
+
+
+} else {
+    //append to table
+    rowGroup.append(createRecord(currentProduct,currentQuantity))
+    
+    
+
 }
+
+
+    //calculate total record
+    updateRecordtotal()
+    createForm.reset()
+
+
+}
+
 
 
 export const rowGroupHandler = (event) => {
@@ -39,6 +61,11 @@ export const rowGroupHandler = (event) => {
    
 
 
+    }
+
+
+    export const manangeInventoryBtnHandler = () => {
+        inventory.classList.toggle("-translate-x-full")
     }
 
 

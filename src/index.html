@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./output.css" />
     <link rel="stylesheet" href="./input.css">
   </head>
-  <body>
+  <body id="display">
     <main
       class=" max-w-[1000px] mx-auto py-5 flex flex-col h-screen px-5 lg:px-0"
     >
@@ -68,11 +68,7 @@
         </form>
 <!-- 
 //..................................table.......................... -->
-        <section id="sectionId">
-
-
-       
-
+   <section id="sectionId">
   <div class=" shadow-md sm:rounded-lg">
     <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
         <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
@@ -137,16 +133,50 @@
     </table>
 </div>
   
+      </section>
+      <!-- -translate-x-full -->
+      <section id="inventory" class=" backdrop-blur-sm bg-white/30 fixed w-96 h-screen bg-gray-100 shadow-lg  duration-300 left-0 top-0 z-50">
+  <div class="sheetHeader p-5 flex justify-between">
+    <h1 class="text-2xl font-bold ">Your Product</h1>
+
+    <button id="inventorySheetcloseBtn" class="border-none duration-100 p-2 active:scale-75 active:bg-gray-100">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class=" w-6 h-6 pointer-events-none">
+      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+    </svg>
+    </button>
+
+
+  </div>
+
+  <div class="sheetBody " id="productGroup">
+
+    <div class="mb-3 p-5 bg-gray-200    ">
+
+      <input placeholder="New Item Name" class="w-full mb-3" type="text"> 
+      
+      <div class="flex justify-between">
+        
+      <input placeholder="Price" type="number">
+      <button class="border px-6 bg-gray-600 text-white active:bg-gray-500">Add New</button>
+
+      </div>
+  
+    </div>
+
+  </div>
 
 
 
       </section>
+
+
+
 <!-- 
 //..............................footer......................... -->
 
       <footer class="flex justify-end mt-auto">
 
-        <button id="manangeInventory" type="button" class="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Manange inventory</button>
+        <button id="manangeInventoryBtn" type="button" class="active:bg-gray-200 py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Manange inventory</button>
 
         <button id="printBtn" type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Print</button>
        
@@ -199,13 +229,17 @@
     </td>
 </tr>  
 
-
-<!-- ......................template roll .................... -->
-
-
-
-
+<!-- ......................template for product .................... -->
 </template>
+
+<template id="productTemplate">
+  <div class="mb-3 p-5 flex rounded justify-between items-center border   ">
+    <p class="product-name">Apple</p>
+    <p class="product-price">500</p>
+
+  </div>
+</template>
+
 
 
 
