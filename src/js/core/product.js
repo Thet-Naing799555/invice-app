@@ -1,4 +1,4 @@
-import { productGroup, productTemplate } from "./selector.js";
+import { productGroup, productSelect, productTemplate } from "./selector.js";
 
 
 export const createProduct = ({name,price}) => {
@@ -9,7 +9,7 @@ export const createProduct = ({name,price}) => {
     const card = productTemplate.content.cloneNode(true)
    card.querySelector(".product-name").innerText = name
    card.querySelector(".product-price").innerText = price
-   console.log(card);
+  //  console.log(card);
    return card
 }
 
@@ -18,8 +18,7 @@ export const createProduct = ({name,price}) => {
 export const productRender =(product) => {
   product.forEach(({name,price,id}) => {
     productSelect.append(new Option(name,id));
-    productGroup.prepend(createProduct({name,price}));
+    productGroup.append(createProduct({name,price}));
   })
   }
 
- 

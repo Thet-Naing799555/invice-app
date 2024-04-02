@@ -1,6 +1,8 @@
 
-import { addRecordQuantity, createRecord, deleRecord, subRecordQuantity, updateRecordtotal } from "./record.js";
-import {  createForm,     inventory,     rowGroup } from "./selector.js";
+
+import { createProduct, productRender } from "./product.js";
+import {  createRecord, deleRecord, recordUpdate, updateRecordtotal } from "./record.js";
+import {   addNewProductNameInput, addNewProductPriceInput, createForm,     inventory,     newProductCreateForm,     productGroup,     productSelect,     rowGroup } from "./selector.js";
 import { products } from "./variable.js";
 
 export const createFormHandler = (e) => {
@@ -20,17 +22,17 @@ const currentProduct = products.find((x) => x.id === currentProductId )
 //isExitstance row
 
 const isExitstanceRow = rowGroup.querySelector(`[row-product-id='${currentProductId}']`)  //altribute selector with id
-console.log(isExitstanceRow);
+
 
 if(isExitstanceRow) {
 
-    const currentQuantityElement = isExitstanceRow.querySelector(".row-quantity");
-const currentCost =  isExitstanceRow.querySelector(".row-cost");
-const currentPrice =isExitstanceRow.querySelector(".row-product-price")
- currentQuantityElement.innerText = parseInt(currentQuantityElement.innerText)+currentQuantity
-console.log(currentPrice.innerText);
-currentCost.innerText= currentPrice.innerText* currentQuantityElement.innerText
-
+//     const currentQuantityElement = isExitstanceRow.querySelector(".row-quantity");
+// const currentCost =  isExitstanceRow.querySelector(".row-cost");
+// const currentPrice =isExitstanceRow.querySelector(".row-product-price")
+//  currentQuantityElement.innerText = parseInt(currentQuantityElement.innerText)+currentQuantity
+// console.log(currentPrice.innerText);
+// currentCost.innerText= currentPrice.innerText* currentQuantityElement.innerText
+ recordUpdate(isExitstanceRow.getAttribute("row-product-id"),currentQuantity)
 
 } else {
     //append to table
@@ -42,7 +44,7 @@ currentCost.innerText= currentPrice.innerText* currentQuantityElement.innerText
 
 
     //calculate total record
-    updateRecordtotal()
+    // updateRecordtotal()
     createForm.reset()
 
 
@@ -54,9 +56,11 @@ export const rowGroupHandler = (event) => {
     if(event.target.classList.contains("row-del-btn")){
         deleRecord(event)
     } else if (event.target.classList.contains("row-q-add")){
-        addRecordQuantity(event)
+        // addRecordQuantity(event)
+        recordUpdate(event.target.closest(".row").getAttribute("row-product-id"),1)
     } else if (event.target.classList.contains("row-q-sub")){
-        subRecordQuantity(event)
+        // subRecordQuantity(event)
+        recordUpdate(event.target.closest(".row").getAttribute("row-product-id"),-1)
     }
    
 
@@ -68,6 +72,32 @@ export const rowGroupHandler = (event) => {
         inventory.classList.toggle("-translate-x-full")
     }
 
+    export const addNewProductBtnHandler = (x) => {
+        x.preventDefault()
+      
+       const formData = new FormData(newProductCreateForm)
+    
+       const newProduct = {
+        id: Date.now(),
+        name: formData.get("newProductNameInput"),
+        price : formData.get("newProductPriceInput")
+       }
+    //   productGroup.prepend(createProduct(newProduct))
+    //   productSelect.append(new Option(newProduct.name,newProduct.price))
+      productGroup.innerHTML= "";
+      productSelect.innerHTML="";
+
+      products.push(newProduct) 
+      productRender(products)
+
+   newProductCreateForm.reset()
+     
+    }
 
 
+    export const  printBtnHandler = () => {
+      window.print()
+    }
+
+    
 

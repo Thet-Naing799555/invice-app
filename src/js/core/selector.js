@@ -14,9 +14,16 @@ export const inventory = document.querySelector("#inventory")
 
 export const inventorySheetcloseBtn =document.querySelector("#inventorySheetcloseBtn")
 
+export const addNewProductNameInput =document.querySelector("#newProductNameInput")
 
+export const addNewProductPriceInput = document.querySelector("#newProductPriceInput")
+
+export const addNewProductBtn = document.querySelector("#addNewProductBtn")
 
 export const recordTotal= document.querySelector(".recordTotalPrice")
 
+export const newProductCreateForm=document.querySelector("#newProductCreateForm")
 
-// export const record =document.querySelector("#record")
+export const productSelect=document.querySelector("#productSelect")
+
+export const printBtn =document.querySelector("#printBtn")
